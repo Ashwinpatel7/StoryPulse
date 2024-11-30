@@ -6,12 +6,18 @@ import { SignupInput } from "@syedahmedullahjaser/zod-inference-medium-blog"
 
 export const Auth = ({type}: {type: "signup" | "signin"}) => {
 
-  const navigate = useNavigate();
-  const [postInputs, setPostInputs] = useState<SignupInput>({
-    name: "",
-    email: "",
-    password: ""
-  })
+  const [postInputs, setPostInputs] = useState(
+    type === "signup" 
+      ? {
+          name: "",
+          email: "",
+          password: ""
+        }
+      : {
+          email: "",
+          password: ""
+        }
+  );
 
   async function sendRequest () {
     try{
@@ -41,14 +47,14 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
                 </Link>
             </div>
 
-            {type === "signup" ? <LabelledInput label="Name" placeholder="Syed Jaser" onChange={(e) =>{
+            {type === "signup" ? <LabelledInput label="Name" placeholder="Ashwin Patel" onChange={(e) =>{
               setPostInputs({
                 ...postInputs,
                 name: e.target.value
               })
             }}/> : null}
 
-            <LabelledInput label="Username" placeholder="syedjaser" onChange={(e) =>{
+            <LabelledInput label="Username" placeholder="ashwinpatel" onChange={(e) =>{
               setPostInputs({
                 ...postInputs,
                 email: e.target.value
